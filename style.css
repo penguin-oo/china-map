@@ -153,12 +153,17 @@ body::before {
     overflow: hidden;
     backdrop-filter: blur(20px);
     box-shadow: var(--shadow-soft);
+    /* 确保内容不会溢出圆角边框 */
+    isolation: isolate;
 }
 
 .map-container {
     width: 100%;
     height: 650px;
     cursor: grab;
+    /* 限制地图在容器内 */
+    overflow: hidden;
+    clip-path: inset(0 round var(--radius-lg));
 }
 
 .map-container:active {
