@@ -179,7 +179,7 @@ function getMapOption(mode, selectedProvinceName = null) {
 
     // 如果有选中省份，修改标题
     let titleText = titles[mode];
-    let subtitleText = '数据来源：国家统计局';
+    let subtitleText = '数据来源：国家统计局 2022年';
     if (selectedProvinceName) {
         subtitleText = `以 ${selectedProvinceName} 为参照基准`;
     }

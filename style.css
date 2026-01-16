@@ -452,6 +452,15 @@ body::before {
     margin-top: 4px;
 }
 
+.data-source {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
 /* ============================================
    加载动画
    ============================================ */
