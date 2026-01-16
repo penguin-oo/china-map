@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国地图 - 交互式省份地图</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- ECharts 核心库 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <!-- 中国地图数据 -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <header class="header">
+            <h1>🇨🇳 中国交互式地图</h1>
+            <p class="subtitle">点击任意省份查看详细信息</p>
+        </header>
+
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <!-- 地图容器 -->
+            <div class="map-section">
+                <div id="china-map" class="map-container"></div>
+
+                <!-- 地图控制面板 -->
+                <div class="map-controls">
+                    <button id="btn-reset" class="control-btn" title="重置视图">
+                        <span>🔄</span> 重置
+                    </button>
+                    <button id="btn-zoom-in" class="control-btn" title="放大">
+                        <span>➕</span>
+                    </button>
+                    <button id="btn-zoom-out" class="control-btn" title="缩小">
+                        <span>➖</span>
+                    </button>
+                    <div class="view-modes">
+                        <button id="btn-population" class="mode-btn active" data-mode="population">人口</button>
+                        <button id="btn-gdp" class="mode-btn" data-mode="gdp">GDP</button>
+                        <button id="btn-area" class="mode-btn" data-mode="area">面积</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 信息面板 -->
+            <aside class="info-panel">
+                <div class="panel-header">
+                    <h2 id="province-name">全国概览</h2>
+                    <span id="province-pinyin" class="pinyin"></span>
+                </div>
+
+                <div class="panel-content">
+                    <!-- 省份基本信息 -->
+                    <div class="info-card" id="basic-info">
+                        <h3>📊 基本信息</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <span class="label">行政级别</span>
+                                <span class="value" id="admin-level">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="label">省会/首府</span>
+                                <span class="value" id="capital">-</span>
+                            </div>
+                            <div class="info-item clickable-stat" data-mode="population" title="点击按人口显示地图">
+                                <span class="label">👥 人口</span>
+                                <span class="value" id="population">-</span>
+                                <span class="click-hint">点击切换</span>
+                            </div>
+                            <div class="info-item clickable-stat" data-mode="area" title="点击按面积显示地图">
+                                <span class="label">📐 面积</span>
+                                <span class="value" id="area">-</span>
+                                <span class="click-hint">点击切换</span>
+                            </div>
+                            <div class="info-item clickable-stat" data-mode="gdp" title="点击按GDP显示地图">
+                                <span class="label">💰 GDP</span>
+                                <span class="value" id="gdp">-</span>
+                                <span class="click-hint">点击切换</span>
+                            </div>
+                            <div class="info-item clickable-stat" data-mode="gdpPerCapita" title="点击按人均GDP显示地图">
+                                <span class="label">💵 人均GDP</span>
+                                <span class="value" id="gdp-per-capita">-</span>
+                                <span class="click-hint">点击切换</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 省份特色 -->
+                    <div class="info-card" id="features-card">
+                        <h3>🏛️ 地区特色</h3>
+                        <div class="features-content">
+                            <div class="feature-item">
+                                <span class="feature-label">🍜 特色美食</span>
+                                <p id="cuisine">-</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-label">🏔️ 著名景点</span>
+                                <p id="attractions">-</p>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-label">📝 简介</span>
+                                <p id="description">-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 统计图表 -->
+                    <div class="info-card">
+                        <h3>📈 数据对比</h3>
+                        <div id="comparison-chart" class="mini-chart"></div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- 底部统计 -->
+        <footer class="footer">
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="stat-value">34</span>
+                    <span class="stat-label">省级行政区</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">14.1亿</span>
+                    <span class="stat-label">总人口</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">960万</span>
+                    <span class="stat-label">平方公里</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">121万亿</span>
+                    <span class="stat-label">GDP(元)</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 加载提示 -->
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <p>地图加载中...</p>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
