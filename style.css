@@ -136,9 +136,9 @@ body::before {
    主要内容区
    ============================================ */
 .main-content {
-    display: grid;
-    grid-template-columns: 1fr 380px;
-    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     flex: 1;
 }
 
@@ -243,23 +243,27 @@ body::before {
 .info-panel {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
 }
 
 .panel-header {
     background: var(--bg-card);
-    padding: 24px;
-    border-radius: var(--radius-lg);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
     border: 1px solid var(--border-color);
     text-align: center;
     backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
 }
 
 .panel-header h2 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 4px;
+    margin-bottom: 0;
 }
 
 .pinyin {
@@ -269,11 +273,9 @@ body::before {
 }
 
 .panel-content {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    flex: 1;
-    overflow-y: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
 }
 
 /* 信息卡片 */
