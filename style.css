@@ -497,60 +497,267 @@ body::before {
 }
 
 /* ============================================
-   响应式设计
+   响应式设计 - 电脑/平板/手机横屏/手机竖屏
    ============================================ */
-@media (max-width: 1200px) {
-    .main-content {
-        grid-template-columns: 1fr;
+
+/* 电脑端 (>1024px) - 默认样式，无需额外设置 */
+
+/* 平板/小屏电脑 (768px - 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        padding: 15px;
     }
 
-    .info-panel {
-        order: 2;
+    .header {
+        padding: 10px 15px;
+    }
+
+    .header h1 {
+        font-size: 1.8rem;
     }
 
     .map-container {
-        height: 500px;
+        height: 450px;
+    }
+
+    .panel-content {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 768px) {
+/* 手机横屏 (landscape + max-height) */
+@media (max-width: 900px) and (orientation: landscape) {
+    .container {
+        padding: 8px;
+    }
+
+    .header {
+        padding: 5px 10px;
+        margin-bottom: 5px;
+    }
+
     .header h1 {
-        font-size: 2rem;
+        font-size: 1.4rem;
+    }
+
+    .subtitle {
+        display: none;
+    }
+
+    .main-content {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .map-section {
+        flex: 2;
     }
 
     .map-container {
-        height: 400px;
+        height: calc(100vh - 120px);
     }
 
     .map-controls {
-        flex-wrap: wrap;
+        bottom: 10px;
+        left: 10px;
+        gap: 5px;
+    }
+
+    .control-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+
+    .mode-btn {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    .info-panel {
+        flex: 1;
+        max-width: 320px;
+    }
+
+    .panel-header {
+        padding: 8px 12px;
+    }
+
+    .panel-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .panel-content {
+        grid-template-columns: 1fr;
         gap: 8px;
+        overflow-y: auto;
+        max-height: calc(100vh - 180px);
+    }
+
+    .info-card {
+        padding: 10px;
+    }
+
+    .info-card h3 {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+        padding-bottom: 4px;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .info-item {
+        padding: 6px;
+    }
+
+    .info-item .label {
+        font-size: 0.7rem;
+    }
+
+    .info-item .value {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        display: none;
+    }
+}
+
+/* 手机竖屏 (<768px) */
+@media (max-width: 768px) and (orientation: portrait) {
+    .container {
+        padding: 10px;
+    }
+
+    .header {
+        padding: 8px 10px;
+        margin-bottom: 8px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+    }
+
+    .main-content {
+        gap: 10px;
+    }
+
+    .map-container {
+        height: 300px;
+    }
+
+    .map-controls {
+        bottom: 8px;
+        left: 8px;
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+
+    .control-btn {
+        padding: 6px 10px;
+        font-size: 0.75rem;
     }
 
     .view-modes {
         margin-left: 0;
-        margin-top: 8px;
+        margin-top: 4px;
         width: 100%;
     }
 
     .mode-btn {
         flex: 1;
-        padding: 8px 12px;
+        padding: 6px 8px;
+        font-size: 0.75rem;
+    }
+
+    .panel-header {
+        padding: 10px 12px;
+    }
+
+    .panel-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .panel-content {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .info-card {
+        padding: 10px;
+    }
+
+    .info-card h3 {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
     }
 
     .info-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .info-item {
+        padding: 6px;
+    }
+
+    .info-item .label {
+        font-size: 0.7rem;
+    }
+
+    .info-item .value {
+        font-size: 0.9rem;
+    }
+
+    .click-hint {
+        font-size: 0.55rem;
+    }
+
+    .features-content {
+        gap: 8px;
+    }
+
+    .feature-item {
+        padding: 8px;
+    }
+
+    .feature-label {
+        font-size: 0.75rem;
+    }
+
+    .feature-item p {
+        font-size: 0.85rem;
+    }
+
+    .mini-chart {
+        height: 150px;
     }
 
     .stats-bar {
+        padding: 15px;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 10px;
     }
 
     .stat-item {
-        flex: 1 1 40%;
+        flex: 1 1 45%;
         border-right: none;
-        padding: 10px;
+        padding: 8px;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
     }
 }
 
